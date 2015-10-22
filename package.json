@@ -1,6 +1,6 @@
 {
   "name": "gulp-depcheck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "depcheck task for Gulp",
   "main": "index.js",
   "scripts": {
