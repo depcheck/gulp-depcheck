@@ -32,36 +32,35 @@ function depCheck(options) {
   return function(){
     return new Es6Promise(function(resolve, reject) {
       depcheck(process.cwd(), options, function(unused) {
-        var invalidDirs           = Object.keys(unused.invalidDirs || {});
-        var invalidFiles          = Object.keys(unused.invalidFiles || {});
-        var unusedDependencies    = unused.dependencies || [];
-        var unusedDevDependencies = unused.devDependencies || [];
+        var invalidDirs           = ignoreInvalidDirs ? [] : Object.keys(unused.invalidDirs || {});
+        var invalidFiles          = ignoreInvalidFiles ? [] : Object.keys(unused.invalidFiles || {});
+        var unusedDependencies    = ignoreUnusedDependencies ? [] : unused.dependencies || [];
+        var unusedDevDependencies = ignoreUnusedDevDependencies ? [] : unused.devDependencies || [];
 
-        if (!ignoreInvalidFiles && invalidFiles.length) {
+        if (invalidFiles.length) {
           reject(
             pluginError(
               'Unable to parse some files: ' + invalidFiles.join(', ')
             )
           );
         } 
-        else if (!ignoreInvalidDirs && invalidDirs.length) {
+        else if (invalidDirs.length) {
           reject(
             pluginError(
               'Unable to access some dirs: ' + invalidDirs.join(', ')
             )
           );
         }
-        else if ((!ignoreUnusedDependencies && unusedDependencies.length) || 
-          (!ignoreUnusedDevDependencies && unusedDevDependencies.length)) {
-            var allUnusedDeps = unusedDependencies.concat(unusedDevDependencies);
-            reject(
-              pluginError(
-                'You have unused dependencies:\n\n' + allUnusedDeps.join(',\n')
-              )
-            );
-          } else {
-            resolve();  
-          }
+        else if (unusedDependencies.length || unusedDevDependencies.length) {
+          var allUnusedDeps = unusedDependencies.concat(unusedDevDependencies);
+          reject(
+            pluginError(
+              'You have unused dependencies:\n\n' + allUnusedDeps.join(',\n')
+            )
+          );
+        } else {
+          resolve();  
+        }
       });
     });
   };

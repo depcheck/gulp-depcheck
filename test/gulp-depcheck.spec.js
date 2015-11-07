@@ -106,7 +106,7 @@ describe('gulp-depcheck', function() {
     expect(this.lastCall().args[1].ignoreDirs).toEqual([ 'a', 'b', 'c' ]);
   });  
 
-  it('Should fail dependencies if dependencies is false', function(done) {
+  it('Should fail on unused dependencies by default', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
         dependencies: ['a', 'b']
@@ -114,7 +114,7 @@ describe('gulp-depcheck', function() {
     })().then(done.fail).catch(done);
   });
 
-  it('Should ignore devDependencies if devDependencies is false', function(done) {
+  it('Should fail on unused devDependencies by default', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
         devDependencies: ['a', 'b']
@@ -122,7 +122,7 @@ describe('gulp-depcheck', function() {
     })().then(done.fail).catch(done);
   });
 
-  it('Should ignore invalidFiles if invalidFiles is false', function(done) {
+  it('Should fail on invalidFiles by default', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
         invalidFiles: { a: new Error(), b: new Error() }
@@ -130,7 +130,7 @@ describe('gulp-depcheck', function() {
     })().then(done.fail).catch(done);
   });
 
-  it('Should ignore invalidDirs if invalidDirs is false', function(done) {
+  it('Should fail on invalidDirs by default', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
         invalidDirs: { a: new Error(), b: new Error() }
@@ -154,6 +154,34 @@ describe('gulp-depcheck', function() {
       }),
       devDependencies: false
     })().then(done).catch(done.fail);
+  });
+
+ it('Should not report dependencies if dependencies is false', function(done) {
+    depcheck({
+      depcheck: this.fakeDepcheck({
+        dependencies: ['dep1', 'dep2'],
+        devDependencies: ['devDep1', 'devDep2']
+      }),
+      dependencies: false
+    })().then(done.fail).catch(function(err) {
+      expect(err.message).not.toMatch(/(dep1|dep2)/);
+      expect(err.message).toMatch(/(devDep1|devDep2)/);
+      done();
+    });
+  });
+
+  it('Should not report devDependencies if devDependencies is false', function(done) {
+    depcheck({
+      depcheck: this.fakeDepcheck({
+        dependencies: ['dep1', 'dep2'],
+        devDependencies: ['devDep1', 'devDep2']
+      }),
+      devDependencies: false
+    })().then(done.fail).catch(function(err) {
+      expect(err.message).toMatch(/(dep1|dep2)/);
+      expect(err.message).not.toMatch(/(devDep1|devDep2)/);
+      done();
+    });
   });
 
   it('Should ignore invalidFiles if invalidFiles is false', function(done) {
