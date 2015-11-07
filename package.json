@@ -23,13 +23,17 @@
   "dependencies": {
     "depcheck": "^0.4.7",
     "es6-promise": "^3.0.2",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "lodash": "^3.10.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-help": "^1.6.1",
+    "gulp-jasmine": "^2.2.1",
     "gulp-jscs": "^3.0.1",
     "gulp-jshint": "^1.11.2",
     "gulp-release-tasks": "0.0.3",
-    "gulp-sequence": "^0.4.1"
+    "gulp-sequence": "^0.4.1",
+    "jasmine-spec-reporter": "^2.4.0"
   }
 }
