@@ -6,7 +6,7 @@ var SpecReporter  = require('jasmine-spec-reporter');
 var jshint        = require('gulp-jshint');
 var jscs          = require('gulp-jscs');
 var seq           = require('gulp-sequence');
-var depcheck      = require('.');
+var depcheck      = require('./');
 
 require('gulp-release-tasks')(gulp);
 
