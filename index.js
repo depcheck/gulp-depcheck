@@ -10,17 +10,17 @@ module.exports = depCheck;
 function depCheck(options) {
   options               = options || {};
   var depcheck          = options.depcheck || require('depcheck');
-  var ignoreDirsDefault = options.ignoreDirsDefault === false ? 
-                            [] : 
+  var ignoreDirsDefault = options.ignoreDirsDefault === false ?
+                            [] :
                               ['node_modules', 'bower_components'];
-  
-  var ignoreUnusedDependencies     = options.dependencies    === false; 
+
+  var ignoreUnusedDependencies     = options.dependencies    === false;
   var ignoreUnusedDevDependencies  = options.devDependencies === false;
   var ignoreInvalidFiles           = options.invalidFiles    === false;
   var ignoreInvalidDirs            = options.invalidDirs     === false;
 
   options.ignoreDirs    = _.uniq(ignoreDirsDefault.concat(options.ignoreDirs || []));
-  options               = _.omit(options, 
+  options               = _.omit(options,
     'depcheck',
     'ignoreDirsDefault',
     'dependencies',
@@ -43,15 +43,13 @@ function depCheck(options) {
               'Unable to parse some files: ' + invalidFiles.join(', ')
             )
           );
-        } 
-        else if (invalidDirs.length) {
+        } else if (invalidDirs.length) {
           reject(
             pluginError(
               'Unable to access some dirs: ' + invalidDirs.join(', ')
             )
           );
-        }
-        else if (unusedDependencies.length || unusedDevDependencies.length) {
+        } else if (unusedDependencies.length || unusedDevDependencies.length) {
           var allUnusedDeps = unusedDependencies.concat(unusedDevDependencies);
           reject(
             pluginError(
@@ -59,7 +57,7 @@ function depCheck(options) {
             )
           );
         } else {
-          resolve();  
+          resolve();
         }
       });
     });

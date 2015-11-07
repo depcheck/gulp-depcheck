@@ -30,14 +30,14 @@ describe('gulp-depcheck', function() {
 
   it('Should call depcheck on cwd', function() {
     depcheck({
-      depcheck: this.fakeDepcheck() 
+      depcheck: this.fakeDepcheck()
     })();
 
     expect(this.lastCall().args[0]).toEqual(process.cwd());
   });
 
   it('Should call depcheck passing options', function() {
-    depcheck({ 
+    depcheck({
       depcheck: this.fakeDepcheck(),
       fakeOpt: 1
     })();
@@ -47,7 +47,7 @@ describe('gulp-depcheck', function() {
 
   it('Should not pass depcheck impl to depcheck', function() {
     depcheck({
-      depcheck: this.fakeDepcheck() 
+      depcheck: this.fakeDepcheck()
     })();
 
     expect(this.lastCall().args[1].depcheck).not.toBeDefined();
@@ -55,7 +55,7 @@ describe('gulp-depcheck', function() {
 
   it('Should not pass ignoreDirsDefault to depcheck', function() {
     depcheck({
-      depcheck: this.fakeDepcheck() 
+      depcheck: this.fakeDepcheck()
     })();
 
     expect(this.lastCall().args[1].ignoreDirsDefault).not.toBeDefined();
@@ -63,13 +63,13 @@ describe('gulp-depcheck', function() {
 
   it('Should concat default ignored dirs to depcheck ignoreDirs', function() {
     depcheck({
-      depcheck: this.fakeDepcheck() 
+      depcheck: this.fakeDepcheck()
     })();
 
     expect(this.lastCall().args[1].ignoreDirs).toEqual(['node_modules', 'bower_components']);
   });
 
- it('Should not concat default ignored dirs to depcheck ignoreDirs if ignoreDirsDefault is false', function() {
+  it('Should not concat default ignored dirs to depcheck ignoreDirs if ignoreDirsDefault is false', function() {
     depcheck({
       depcheck: this.fakeDepcheck(),
       ignoreDirsDefault: false
@@ -94,7 +94,7 @@ describe('gulp-depcheck', function() {
     })();
 
     expect(this.lastCall().args[1].ignoreDirs).toEqual(['node_modules', 'bower_components', 'a', 'b', 'c' ]);
-  });  
+  });
 
   it('Should not concat ignoreDirs option with ignoreDirsDefault if ignoreDirsDefault is false', function() {
     depcheck({
@@ -104,7 +104,7 @@ describe('gulp-depcheck', function() {
     })();
 
     expect(this.lastCall().args[1].ignoreDirs).toEqual([ 'a', 'b', 'c' ]);
-  });  
+  });
 
   it('Should fail on unused dependencies by default', function(done) {
     depcheck({
@@ -156,7 +156,7 @@ describe('gulp-depcheck', function() {
     })().then(done).catch(done.fail);
   });
 
- it('Should not report dependencies if dependencies is false', function(done) {
+  it('Should not report dependencies if dependencies is false', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
         dependencies: ['dep1', 'dep2'],
