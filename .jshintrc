@@ -11,6 +11,7 @@
      "xit",
      "expect",
      "beforeEach",
-     "spyOn"
+     "spyOn",
+     "afterEach"
    ]
 }

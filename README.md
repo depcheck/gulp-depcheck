@@ -1,5 +1,10 @@
 # gulp-depcheck
 
+[depcheck](https://www.npmjs.com/package/depcheck) plugin for gulp.
+
+[![Dependency Status](https://david-dm.org/mcasimir/gulp-depcheck.svg)](https://david-dm.org/mcasimir/gulp-depcheck)
+
+
 ## Install
 
 ```
