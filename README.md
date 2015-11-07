@@ -4,6 +4,7 @@
 
 [![Dependency Status](https://david-dm.org/mcasimir/gulp-depcheck.svg)](https://david-dm.org/mcasimir/gulp-depcheck)
 
+[![Build Status](https://travis-ci.org/mcasimir/gulp-depcheck.svg?branch=master)](https://travis-ci.org/mcasimir/gulp-depcheck)
 
 ## Install
 
