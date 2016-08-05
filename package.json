@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/mcasimir/gulp-depcheck#readme",
   "dependencies": {
-    "depcheck": "^0.4.7",
+    "depcheck": "^0.6.4",
     "es6-promise": "^3.0.2",
     "gulp-util": "^3.0.7",
     "lodash": "^3.10.1"
