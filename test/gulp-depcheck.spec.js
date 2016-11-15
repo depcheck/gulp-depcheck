@@ -14,7 +14,8 @@ describe('gulp-depcheck', function() {
         dependencies: [],
         devDependencies: [],
         invalidFiles: [],
-        invalidDirs: []
+        invalidDirs: [],
+        missing: []
       }, returns || {});
 
       this._fakeDepcheck.and.callFake(function(path, options, cb) {
@@ -106,6 +107,14 @@ describe('gulp-depcheck', function() {
     expect(this.lastCall().args[1].ignoreDirs).toEqual([ 'a', 'b', 'c' ]);
   });
 
+  it('Should not pass ignoreMissing to depcheck', function() {
+    depcheck({
+      depcheck: this.fakeDepcheck()
+    })();
+
+    expect(this.lastCall().args[1].ignoreMissing).not.toBeDefined();
+  });
+
   it('Should fail on unused dependencies by default', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
@@ -138,6 +147,14 @@ describe('gulp-depcheck', function() {
     })().then(done.fail).catch(done);
   });
 
+  it('Should fail on missing by default', function(done) {
+    depcheck({
+      depcheck: this.fakeDepcheck({
+        missing: ['a', 'b']
+      })
+    })().then(done.fail).catch(done);
+  });
+
   it('Should ignore dependencies if dependencies is false', function(done) {
     depcheck({
       depcheck: this.fakeDepcheck({
@@ -153,6 +170,15 @@ describe('gulp-depcheck', function() {
         devDependencies: ['a', 'b']
       }),
       devDependencies: false
+    })().then(done).catch(done.fail);
+  });
+
+  it('Should ignore missing if missing is false', function(done) {
+    depcheck({
+      depcheck: this.fakeDepcheck({
+        missing: ['a', 'b']
+      }),
+      missing: false
     })().then(done).catch(done.fail);
   });
 
@@ -199,6 +225,15 @@ describe('gulp-depcheck', function() {
         invalidDirs: { a: new Error(), b: new Error() }
       }),
       invalidDirs: false
+    })().then(done).catch(done.fail);
+  });
+
+  it('Should ignore missing if missing is false', function(done) {
+    depcheck({
+      depcheck: this.fakeDepcheck({
+        missing: ['a', 'b']
+      }),
+      missing: false
     })().then(done).catch(done.fail);
   });
 

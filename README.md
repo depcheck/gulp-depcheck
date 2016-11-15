@@ -67,3 +67,9 @@ Default: `true`
 Fails on directory access errors
 
 Default: `true`
+
+##### missing
+
+Fails and reports on missing dependencies.
+
+Default: `true`

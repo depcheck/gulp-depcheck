@@ -18,6 +18,7 @@ function depCheck(options) {
   var ignoreUnusedDevDependencies  = options.devDependencies === false;
   var ignoreInvalidFiles           = options.invalidFiles    === false;
   var ignoreInvalidDirs            = options.invalidDirs     === false;
+  var ignoreMissing                = options.missing         === false;
 
   options.ignoreDirs    = _.uniq(ignoreDirsDefault.concat(options.ignoreDirs || []));
   options               = _.omit(options,
@@ -26,7 +27,8 @@ function depCheck(options) {
     'dependencies',
     'devDependencies',
     'invalidFiles',
-    'invalidDirs'
+    'invalidDirs',
+    'missing'
   );
 
   return function(){
@@ -36,6 +38,7 @@ function depCheck(options) {
         var invalidFiles          = ignoreInvalidFiles ? [] : Object.keys(unused.invalidFiles || {});
         var unusedDependencies    = ignoreUnusedDependencies ? [] : unused.dependencies || [];
         var unusedDevDependencies = ignoreUnusedDevDependencies ? [] : unused.devDependencies || [];
+        var missing               = ignoreMissing ? [] : Object.keys(unused.missing || {});
 
         if (invalidFiles.length) {
           reject(
@@ -54,6 +57,12 @@ function depCheck(options) {
           reject(
             pluginError(
               'You have unused dependencies:\n\n' + allUnusedDeps.join(',\n')
+            )
+          );
+        } else if (missing.length) {
+          reject(
+            pluginError(
+              'You have missing dependencies:\n\n' + missing.join(',\n')
             )
           );
         } else {
