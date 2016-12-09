@@ -1,10 +1,6 @@
 # gulp-depcheck
 
-[depcheck](https://www.npmjs.com/package/depcheck) plugin for gulp.
-
-[![Dependency Status](https://david-dm.org/mcasimir/gulp-depcheck.svg)](https://david-dm.org/mcasimir/gulp-depcheck)
-
-[![Build Status](https://travis-ci.org/mcasimir/gulp-depcheck.svg?branch=master)](https://travis-ci.org/mcasimir/gulp-depcheck)
+gulp-depcheck adds [depcheck](https://www.npmjs.com/package/depcheck) support to Gulp.
 
 ## Installation
 
@@ -14,65 +10,56 @@ $ npm install gulp-depcheck
 
 ## Quick start
 
-``` js
-const depcheck = require('gulp-depcheck');
+First you need to add gulp-depcheck to your project.
 
+```javascript
+const depcheck = require('gulp-depcheck');
+```
+
+Then, you can use the `depcheck` funtion to define Gulp tasks.
+
+```javascript
+gulp.task('depcheck', depcheck());
+```
+
+You may want to exclude some directories from being checked, e.g. the `test` directory. To exclude a directory, provide its name using the `ignoreDirs` property.
+
+```javascript
 gulp.task('depcheck', depcheck({
-  ignoreDirs: [ 'docs', 'build' ],
-  ignoreMatches: [ 'glob' ]
+  ignoreDirs: [ 'test' ]
 }));
 ```
 
-### Options
+Additionally, if you want to exclude packages from being checked, provide their names using the `ignoreMatches` property. Please note that you may use glob patterns here, e.g. to exclude all packages whose names start with `eslint-config-`.
 
-All [depcheck](https://www.npmjs.com/package/depcheck) options are supported, see their docs for more.
+```javascript
+gulp.task('depcheck', depcheck({
+  ignoreMatches: [ 'eslint-config-*' ]
+}));
+```
 
-#### Plugin Options
+### Configuring the report
 
-##### depcheck
+By default, gulp-depcheck fails on any issue it finds. From time to time you might want to adjust this, e.g. to allow unused packages in the `devDependencies` section of your `package.json` file, or to only report packages that are missing from your `package.json` file.
 
-Use a different version of depcheck.
+To do so, there are a few options you may hand over to the `depcheck` function to configure things.
 
-Default: `undefined`
+- Set `dependencies` to `false` if you don't want to be notified on unused packages in the `dependencies` section.
+- Set `devDependencies` to `false` if you don't want to be notified on unused packages in the `devDependencies` section.
+- Set `missing` to `false` if you don't want to be notified on used packages that are missing from the `package.json` file.
 
-##### ignoreDirsDefault
+Moreover, gulp-depcheck fails if it has problems to read files or directories. To adjust this, again there are a few options you may hand over to the `depcheck` function.
 
-Prepend some default dirs to ignoreDirs. Set this to `false` or to an empty array to skip.
+- Set `invalidFiles` to `false` if you don't want to be notified on files that can not be accessed or parsed.
+- Set `invalidDirs` to `false` if you don't want to be notiied on directories that can not be accessed.
 
-Default: `['node_modules', 'bower_components']`
+Moreover, gulp-depcheck supports all options of [depcheck](https://www.npmjs.com/package/depcheck). For more details, see its documentation.
 
-##### dependencies
+### Configuring depcheck
 
-Fails and reports on unused dependencies.
+If you want to configure the version of depcheck to use explicitly provide a reference to it using the `depcheck` property.
 
-Default: `true`
-
-##### devDependencies
-
-Fails and reports on unused devDependencies.
-
-NB: setting this to `false` will still perform depcheck against `devDependencies` but
-will ignore result, to completely skip the check use `withoutDev` option from depcheck.
-
-Default: `true`
-
-##### invalidFiles
-
-Fails on file access and parsing errors
-
-Default: `true`
-
-##### invalidDirs
-
-Fails on directory access errors
-
-Default: `true`
-
-##### missing
-
-Fails and reports on missing dependencies.
-
-Default: `true`
+Additionally, you are allowed to set a default value for the directories to ignore. For that use the `ignoreDirsDefault` property and hand over the names of the directories to ignore as an array. The default value is `['node_modules', 'bower_components']`.
 
 ## License
 
