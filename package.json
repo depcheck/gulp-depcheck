@@ -12,7 +12,7 @@
       "email": "golo.roden@thenativeweb.io"
     }
   ],
-  "main": "index.js",
+  "main": "lib/gulpDepcheck.js",
   "dependencies": {
     "depcheck": "0.6.7",
     "es6-promise": "4.0.5",

@@ -2,10 +2,10 @@
 
 'use strict';
 
-var depcheck      = require('..');
+var depcheck      = require('../lib/gulpDepcheck');
 var _             = require('lodash');
 
-describe('gulp-depcheck', function() {
+describe('gulpDepcheck', function() {
 
   beforeEach(function() {
     this._fakeDepcheck = jasmine.createSpy('depcheck');
