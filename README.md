@@ -61,6 +61,14 @@ If you want to configure the version of depcheck to use explicitly provide a ref
 
 Additionally, you are allowed to set a default value for the directories to ignore. For that use the `ignoreDirsDefault` property and hand over the names of the directories to ignore as an array. The default value is `['node_modules', 'bower_components']`.
 
+## Running the build
+
+To build this module use [roboter](https://www.npmjs.com/package/roboter).
+
+```bash
+$ bot
+```
+
 ## License
 
 The MIT License (MIT)
