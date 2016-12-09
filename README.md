@@ -15,11 +15,11 @@ $ npm install gulp-depcheck
 ## Quick start
 
 ``` js
-var depcheck = require('gulp-depcheck');
+const depcheck = require('gulp-depcheck');
 
 gulp.task('depcheck', depcheck({
   ignoreDirs: [ 'docs', 'build' ],
-  ignoreMatches: ['glob']
+  ignoreMatches: [ 'glob' ]
 }));
 ```
 
