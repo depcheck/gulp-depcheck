@@ -21,19 +21,20 @@
   },
   "homepage": "https://github.com/mcasimir/gulp-depcheck#readme",
   "dependencies": {
-    "depcheck": "^0.6.4",
-    "es6-promise": "^3.0.2",
-    "gulp-util": "^3.0.7",
-    "lodash": "^3.10.1"
+    "depcheck": "0.6.7",
+    "es6-promise": "4.0.5",
+    "gulp-util": "3.0.7",
+    "lodash": "4.17.2"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-help": "^1.6.1",
-    "gulp-jasmine": "^2.2.1",
-    "gulp-jscs": "^3.0.1",
-    "gulp-jshint": "^1.11.2",
+    "gulp": "3.9.0",
+    "gulp-help": "1.6.1",
+    "gulp-jasmine": "2.2.1",
+    "gulp-jscs": "4.0.0",
+    "gulp-jshint": "2.0.4",
     "gulp-release-tasks": "0.0.3",
-    "gulp-sequence": "^0.4.1",
-    "jasmine-spec-reporter": "^2.4.0"
+    "gulp-sequence": "0.4.1",
+    "jasmine-spec-reporter": "2.4.0",
+    "jshint": "2.9.4"
   }
 }
