@@ -1,9 +1,0 @@
-language: node_js
-
-node_js:
-- '7'
-
-before_script:
-  - npm install -g roboter-cli
-
-script: bot

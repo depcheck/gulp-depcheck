@@ -73,7 +73,8 @@ $ bot
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Maurizio Casimirri
+Copyright (c) 2015-2016 Maurizio Casimirri
+
 Copyright (c) 2016 the native web
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
