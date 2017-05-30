@@ -16,7 +16,7 @@ First you need to add gulp-depcheck to your project.
 const depcheck = require('gulp-depcheck');
 ```
 
-Then, you can use the `depcheck` funtion to define Gulp tasks.
+Then, you can use the `depcheck` function to define Gulp tasks.
 
 ```javascript
 gulp.task('depcheck', depcheck());
@@ -27,6 +27,14 @@ You may want to exclude some directories from being checked, e.g. the `test` dir
 ```javascript
 gulp.task('depcheck', depcheck({
   ignoreDirs: [ 'test' ]
+}));
+```
+
+By default the depcheck will be performed on the current working directory.  To specify a different directory use the `rootDir` option.
+
+```javascript
+gulp.task('depcheck', depcheck({
+  rootDir: '/path/to/your/project'
 }));
 ```
 
