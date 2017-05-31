@@ -30,7 +30,7 @@ gulp.task('depcheck', depcheck({
 }));
 ```
 
-By default the depcheck will be performed on the current working directory.  To specify a different directory use the `rootDir` option.
+By default the dependency check will be performed on the current working directory. To specify a different directory use the `rootDir` option.
 
 ```javascript
 gulp.task('depcheck', depcheck({
@@ -83,7 +83,7 @@ The MIT License (MIT)
 
 Copyright (c) 2015-2016 Maurizio Casimirri
 
-Copyright (c) 2016 the native web
+Copyright (c) 2016-2017 the native web
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
