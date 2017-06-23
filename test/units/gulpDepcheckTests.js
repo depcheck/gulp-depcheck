@@ -314,4 +314,10 @@ suite('gulpDepcheck', () => {
     }).is.not.throwing();
     done();
   });
+
+  test('returns a special property that is an object.', done => {
+    assert.that(depcheck.special).is.not.undefined();
+    assert.that(depcheck.special).is.ofType('object');
+    done();
+  });
 });

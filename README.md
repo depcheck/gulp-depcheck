@@ -38,6 +38,17 @@ gulp.task('depcheck', depcheck({
 }));
 ```
 
+Access [special depcheck parsers](https://github.com/depcheck/depcheck#special) via the `special` property. Pass them as options to recognize the dependencies outside of the normal syntax.
+
+```javascript
+gulp.task('depcheck', depcheck({
+  specials : [
+    depcheck.special.babel,
+    depcheck.special.webpack
+  ]
+}));
+```
+
 ### Configuring the report
 
 By default, gulp-depcheck fails on any issue it finds. From time to time you might want to adjust this, e.g. to allow unused packages in the `devDependencies` section of your `package.json` file, or to only report packages that are missing from your `package.json` file.
@@ -60,6 +71,21 @@ Moreover, gulp-depcheck supports all options of [depcheck](https://www.npmjs.com
 If you want to configure the version of depcheck to use explicitly provide a reference to it using the `depcheck` property.
 
 Additionally, you are allowed to set a default value for the directories to ignore. For that use the `ignoreDirsDefault` property and hand over the names of the directories to ignore as an array. The default value is `['node_modules', 'bower_components']`.
+
+Note that if you use a custom version of depcheck you must pass any special parsers explicitly.
+
+```javascript
+const depcheck = require('gulp-depcheck'),
+      myCustomDepcheck = require('depcheck');
+
+gulp.task('depcheck', depcheck({
+    depcheck : myCustomDepcheck,
+    specials : [
+        myCustomDepcheck.special.babel,
+        myCustomDepcheck.special.webpack
+    ]
+}));
+```
 
 ## Running the build
 
