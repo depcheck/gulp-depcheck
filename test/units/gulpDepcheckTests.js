@@ -5,10 +5,29 @@ const assert = require('assertthat');
 const depcheck = require('../../lib/gulpDepcheck');
 
 suite('gulpDepcheck', () => {
-  test('calls depcheck on the current working directory.', done => {
+  test('calls depcheck on the current working directory by default.', done => {
     depcheck({
       depcheck (path) {
         assert.that(path).is.equalTo(process.cwd());
+        done();
+      }
+    })();
+  });
+
+  test('calls depcheck with the specified root directory.', done => {
+    depcheck({
+      depcheck (path) {
+        assert.that(path).is.equalTo('/path/to/project');
+        done();
+      },
+      rootDir: '/path/to/project'
+    })();
+  });
+
+  test('does not pass the rootDir option to depcheck.', done => {
+    depcheck({
+      depcheck (path, options) {
+        assert.that(options.rootDir).is.undefined();
         done();
       }
     })();

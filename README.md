@@ -16,7 +16,7 @@ First you need to add gulp-depcheck to your project.
 const depcheck = require('gulp-depcheck');
 ```
 
-Then, you can use the `depcheck` funtion to define Gulp tasks.
+Then, you can use the `depcheck` function to define Gulp tasks.
 
 ```javascript
 gulp.task('depcheck', depcheck());
@@ -27,6 +27,14 @@ You may want to exclude some directories from being checked, e.g. the `test` dir
 ```javascript
 gulp.task('depcheck', depcheck({
   ignoreDirs: [ 'test' ]
+}));
+```
+
+By default the dependency check will be performed on the current working directory. To specify a different directory use the `rootDir` option.
+
+```javascript
+gulp.task('depcheck', depcheck({
+  rootDir: '/path/to/your/project'
 }));
 ```
 
@@ -75,7 +83,7 @@ The MIT License (MIT)
 
 Copyright (c) 2015-2016 Maurizio Casimirri
 
-Copyright (c) 2016 the native web
+Copyright (c) 2016-2017 the native web
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
